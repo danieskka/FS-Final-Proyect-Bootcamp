@@ -4,7 +4,8 @@ const Card = ({ character }) => {
   return (
     <div>
       <h1>{character.name}</h1>
-      <img src={character.image} alt={character.name} />
+      {character.image && <img src={character.image} alt={character.name} />}
+      <p>{character.description}</p>
     </div>
   );
 };

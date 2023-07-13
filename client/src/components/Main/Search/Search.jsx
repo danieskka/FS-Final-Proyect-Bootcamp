@@ -7,6 +7,8 @@ const Search = () => {
   const [favorites, setFavorites] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredFavorites, setFilteredFavorites] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [resultsPerPage, setResultsPerPage] = useState(5);
 
   useEffect(() => {
     const fetchFavorites = async () => {
@@ -33,15 +35,18 @@ const Search = () => {
 
   const handleFilter = async (filter) => {
     try {
-      let url = `https://hp-api.onrender.com/api/characters`;
+      
+      let url = `https://hp-api.onrender.com/api`;
 
       if (filter === "students") {
-        url += "/students";
+        url += "/characters/students";
       } else if (filter === "staff") {
-        url += "/staff";
+        url += "/characters/staff";
       } else if (filter.startsWith("house/")) {
         const house = filter.split("/")[1];
-        url += `/house/${house}`;
+        url += `/characters/house/${house}`;
+      } else if (filter === "spells") {
+        url += "/spells";
       }
 
       const response = await axios.get(url);
@@ -50,6 +55,17 @@ const Search = () => {
     } catch (error) {
       console.log("Error:", error);
     }
+  };
+
+  // Paginación
+  const indexOfLastResult = currentPage * resultsPerPage;
+  const indexOfFirstResult = indexOfLastResult - resultsPerPage;
+  const currentResults = filteredFavorites.slice(indexOfFirstResult, indexOfLastResult);
+
+  const totalPages = Math.ceil(filteredFavorites.length / resultsPerPage);
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
   };
 
   return (
@@ -65,10 +81,20 @@ const Search = () => {
       <button onClick={() => handleFilter("house/slytherin")}>Slytherin</button>
       <button onClick={() => handleFilter("house/ravenclaw")}>Ravenclaw</button>
       <button onClick={() => handleFilter("house/hufflepuff")}>Hufflepuff</button>
-
+      <button onClick={() => handleFilter("spells")}>Spells</button>
+      
       <div>
-        {filteredFavorites.map(favorite => (
+        {currentResults.map(favorite => (
           <Card key={favorite.id} character={favorite} />
+        ))}
+      </div>
+
+      {/* Paginación */}
+      <div>
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button key={index} onClick={() => paginate(index + 1)}>
+            {index + 1}
+          </button>
         ))}
       </div>
     </div>
