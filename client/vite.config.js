@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/api/players": "http://localhost:3000",
+      "/api/favorites": "http://localhost:3000",
     },
   },
 })
