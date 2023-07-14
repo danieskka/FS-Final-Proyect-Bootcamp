@@ -22,8 +22,8 @@ const Favorites = () => {
     <div>
       {favorites.map((favorite, index) => (
         <div key={index}>
-          <h1>{favorite.character_name}</h1>
-          <img src={favorite.character_img} alt={favorite.character_name} />
+          <h1>{favorite.name}</h1>
+          <img src={favorite.image} alt={favorite.name} />
         </div>
       ))}
     </div>

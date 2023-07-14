@@ -36,17 +36,15 @@ const Search = () => {
   const handleFilter = async (filter) => {
     try {
       
-      let url = `https://hp-api.onrender.com/api`;
+      let url = `https://hp-api.onrender.com/api/characters`;
 
       if (filter === "students") {
-        url += "/characters/students";
+        url += "/students";
       } else if (filter === "staff") {
-        url += "/characters/staff";
+        url += "/staff";
       } else if (filter.startsWith("house/")) {
         const house = filter.split("/")[1];
-        url += `/characters/house/${house}`;
-      } else if (filter === "spells") {
-        url += "/spells";
+        url += `/house/${house}`;
       }
 
       const response = await axios.get(url);
@@ -58,6 +56,7 @@ const Search = () => {
   };
 
   // Paginación
+  
   const indexOfLastResult = currentPage * resultsPerPage;
   const indexOfFirstResult = indexOfLastResult - resultsPerPage;
   const currentResults = filteredFavorites.slice(indexOfFirstResult, indexOfLastResult);
@@ -81,7 +80,6 @@ const Search = () => {
       <button onClick={() => handleFilter("house/slytherin")}>Slytherin</button>
       <button onClick={() => handleFilter("house/ravenclaw")}>Ravenclaw</button>
       <button onClick={() => handleFilter("house/hufflepuff")}>Hufflepuff</button>
-      <button onClick={() => handleFilter("spells")}>Spells</button>
       
       <div>
         {currentResults.map(favorite => (
