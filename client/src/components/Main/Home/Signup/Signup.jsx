@@ -16,7 +16,7 @@ const Signup = ({ onSignUp }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(handleSignup)}>
+    <form onSubmit={handleSubmit(handleSignup)} className="sign-up-form">
       <label>Email:</label>
       <input type="email" {...register("email", { required: true })} />
 
@@ -32,7 +32,7 @@ const Signup = ({ onSignUp }) => {
       <label>Lastname:</label>
       <input type="text" {...register("lastname", { required: true })} />
 
-      <button type="submit">Registrarse</button>
+      <button type="submit">Sign up</button>
     </form>
   );
 };

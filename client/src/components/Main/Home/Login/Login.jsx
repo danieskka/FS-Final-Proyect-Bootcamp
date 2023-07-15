@@ -16,14 +16,14 @@ const Login = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(handleLogin)}>
+    <form onSubmit={handleSubmit(handleLogin)} className="sign-up-form">
       <label>Email:</label>
       <input type="email" {...register("email", { required: true })} />
 
       <label>Password:</label>
       <input type="password" {...register("password", { required: true })} />
 
-      <button type="submit">Iniciar sesión</button>
+      <button type="submit">Log in</button>
     </form>
   );
 };

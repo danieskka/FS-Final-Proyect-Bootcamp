@@ -5,22 +5,33 @@ import Logout from "./Logout/Logout";
 
 const Home = ({ isRegistered, isLoggedIn, onSignUpExitoso, onLoginExitoso }) => {
   return (
-    <div>
-      {isRegistered ? (
-        <div>
-          <h2>Iniciar sesión</h2>
-          <Login onLogin={onLoginExitoso} />
+    <div className="home-container">
+      <div className="form-container">
+        <div className="form-box">
+          {isRegistered ? (
+            <div>
+              <h2 className="title">Login</h2>
+              <Login onLogin={onLoginExitoso} />
+            </div>
+          ) : (
+            <div>
+              <h2 className="title">Sign up</h2>
+              <Signup onSignUp={onSignUpExitoso} />
+              <div className="button-container">
+                <button className="button" onClick={() => setIsLoggedIn(true)}>
+                  Continue without register
+                </button>
+              </div>
+            </div>
+          )}
+          {isLoggedIn && <Logout />}
         </div>
-      ) : (
-        <div>
-          <h2>Registro</h2>
-          <Signup onSignUp={onSignUpExitoso} />
-          <button onClick={() => setIsLoggedIn(true)}>Navegar sin registrarse</button>
         </div>
-      )}
-      {isLoggedIn && <Logout />}
-    </div>
+      </div>
   );
 };
+
+
+
 
 export default Home;

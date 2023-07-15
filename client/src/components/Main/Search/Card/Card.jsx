@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+// import FavoriteIcon from '@mui/icons-material/Favorite';
 
 const Card = ({ character }) => {
 
