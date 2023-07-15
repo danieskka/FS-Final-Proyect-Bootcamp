@@ -13,7 +13,7 @@ const Search = () => {
 
   // Estados para Paginacion: Pag Actual y resultados por Pag
   const [currentPage, setCurrentPage] = useState(1);
-  const [resultsPerPage, setResultsPerPage] = useState(5);
+  const [resultsPerPage, setResultsPerPage] = useState(6);
 
   useEffect(() => {
     const fetchFavorites = async () => {
