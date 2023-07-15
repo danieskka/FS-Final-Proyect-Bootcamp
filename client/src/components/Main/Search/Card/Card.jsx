@@ -1,12 +1,24 @@
 import React, { useState } from "react";
-// import FavoriteIcon from '@mui/icons-material/Favorite';
+import axios from 'axios';
 
 const Card = ({ character }) => {
-
   const [showMore, setShowMore] = useState(false);
 
   const handleShowMore = () => {
     setShowMore(!showMore);
+  };
+
+  const handleAddToFavorites = async () => {
+    try {
+      const response = await axios.post("/api/favorites", {
+        character_id: character.id
+      }, {
+        withCredentials: true  // Incluir la configuración para enviar cookies
+      });
+      console.log("Character added to favorites:", response.data);
+    } catch (error) {
+      console.log("Error adding character to favorites:", error);
+    }
   };
 
   return (
@@ -15,6 +27,10 @@ const Card = ({ character }) => {
       {character.image && <img src={character.image} alt={character.name} />}
       <p>{character.description}</p>
       <button onClick={handleShowMore}>{showMore ? "Hide" : "Show"} More</button>
+      
+      <button onClick={handleAddToFavorites}>
+        Add to Favorites
+      </button>
       {showMore && (
         <div className="additional-info">
           <h2>Additional Information:</h2>
@@ -37,3 +53,5 @@ const Card = ({ character }) => {
 };
 
 export default Card;
+
+
