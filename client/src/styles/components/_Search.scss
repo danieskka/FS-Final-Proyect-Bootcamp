@@ -4,13 +4,57 @@
 .card-section {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around; // Cambia a "space-around" en lugar de "space-between"
+    justify-content: space-around;
     padding: 16px;
     margin: 0 auto;
     max-width: 1200px;
   
-    // Añade margen inferior para reducir la separación entre las tarjetas
     > .card {
       margin-bottom: 16px;
     }
-  }  
+  }
+  .article-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 16px;
+  
+    button {
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: $harry-potter-font, sans-serif;
+      transition: background-color 0.3s;
+      margin: 8px;
+  
+      &.students {
+        background-color: $color-students;
+      }
+  
+      &.staff {
+        background-color: $color-staff;
+      }
+  
+      &.gryffindor {
+        background-color: $color-gryffindor;
+      }
+  
+      &.slytherin {
+        background-color: $color-slytherin;
+      }
+  
+      &.ravenclaw {
+        background-color: $color-ravenclaw;
+      }
+  
+      &.hufflepuff {
+        background-color: $color-hufflepuff;
+      }
+  
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+  

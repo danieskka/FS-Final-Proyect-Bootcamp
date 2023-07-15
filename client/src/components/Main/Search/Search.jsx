@@ -83,18 +83,21 @@ const Search = () => {
         <button type="submit">Search</button>
       </form>
 
-      <button onClick={() => handleFilter("students")}>Hogwarts Students</button>
-      <button onClick={() => handleFilter("staff")}>Hogwarts Staff</button>
-      <button onClick={() => handleFilter("house/gryffindor")}>Gryffindor</button>
-      <button onClick={() => handleFilter("house/slytherin")}>Slytherin</button>
-      <button onClick={() => handleFilter("house/ravenclaw")}>Ravenclaw</button>
-      <button onClick={() => handleFilter("house/hufflepuff")}>Hufflepuff</button>
-      
+      <article className="article-buttons">
+        <button className="students" onClick={() => handleFilter("students")}>Hogwarts Students</button>
+        <button className="staff" onClick={() => handleFilter("staff")}>Hogwarts Staff</button>
+        <button className="gryffindor" onClick={() => handleFilter("house/gryffindor")}>Gryffindor</button>
+        <button className="slytherin" onClick={() => handleFilter("house/slytherin")}>Slytherin</button>
+        <button className="ravenclaw" onClick={() => handleFilter("house/ravenclaw")}>Ravenclaw</button>
+        <button className="hufflepuff" onClick={() => handleFilter("house/hufflepuff")}>Hufflepuff</button>
+      </article>
+
+
       <section className="card-section">
         {currentResults.map(characters => (
           <Card key={characters.id} character={characters} />
         ))}
-    </section>
+      </section>
 
 
       {/* Mostrar la paginacion */}
