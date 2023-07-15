@@ -4,9 +4,14 @@ import Card from './Card';
 
 const Search = () => {
 
-  const [favorites, setFavorites] = useState([]);
+  // Estado de todos los personajes
+  const [characters, setCharacters] = useState([]);
+
+  // Estados para filtros de busqueda
   const [searchTerm, setSearchTerm] = useState("");
-  const [filteredFavorites, setFilteredFavorites] = useState([]);
+  const [filteredCh, setFiltered] = useState([]);
+
+  // Estados para Paginacion: Pag Actual y resultados por Pag
   const [currentPage, setCurrentPage] = useState(1);
   const [resultsPerPage, setResultsPerPage] = useState(5);
 
@@ -15,7 +20,7 @@ const Search = () => {
       try {
         const response = await axios.get('https://hp-api.onrender.com/api/characters');
         const data = response.data;
-        setFavorites(data);
+        setCharacters(data);
       } catch (error) {
         console.log("Error:", error);
       }
@@ -23,16 +28,19 @@ const Search = () => {
     fetchFavorites();
   }, []);
 
+  // Filtrar los personajes cada vez que cambia el estado Characters o SearchTerm (los 2 filtros) y los establece en estado filterCh
   useEffect(() => {
-    const filtered = favorites.filter(favorite => favorite.name.toLowerCase().includes(searchTerm.toLowerCase()));
-    setFilteredFavorites(filtered);
-  }, [favorites, searchTerm]);
+    const filtered = characters.filter(favorite => favorite.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    setFiltered(filtered);
+  }, [characters, searchTerm]);
 
+  // Filtro para formulario de busqueda por nombre y lo establece en estado filteredCh
   const handleSearch = (e) => {
     e.preventDefault();
-    setFilteredFavorites(favorites.filter(favorite => favorite.name.toLowerCase().includes(searchTerm.toLowerCase())));
+    setFiltered(characters.filter(favorite => favorite.name.toLowerCase().includes(searchTerm.toLowerCase())));
   };
 
+  // Filtro para botones, se construye una URL y hace una peticion http GET a la API, se establece en estado filteredCh
   const handleFilter = async (filter) => {
     try {
       
@@ -49,26 +57,27 @@ const Search = () => {
 
       const response = await axios.get(url);
       const data = response.data;
-      setFilteredFavorites(data);
+      setFiltered(data);
     } catch (error) {
       console.log("Error:", error);
     }
   };
 
   // Paginación
-  
-  const indexOfLastResult = currentPage * resultsPerPage;
-  const indexOfFirstResult = indexOfLastResult - resultsPerPage;
-  const currentResults = filteredFavorites.slice(indexOfFirstResult, indexOfLastResult);
+  const indexOfLastResult = currentPage * resultsPerPage; // Indice del ultimo resultado de la pag actual
+  const indexOfFirstResult = indexOfLastResult - resultsPerPage; // Indice del primer resultado de la pag actual
+  const currentResults = filteredCh.slice(indexOfFirstResult, indexOfLastResult); // Lista de Characters de la pag actual
 
-  const totalPages = Math.ceil(filteredFavorites.length / resultsPerPage);
+  // Nº total de Pags dividiendo la longitud de filteredCh / resultsPerPage -> Y redondeamos hacia arriba
+  const totalPages = Math.ceil(filteredCh.length / resultsPerPage);
 
+  // Cambia el Nº de pagina al hacer click en boton, por defecto pagina 1 en parametro
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
   return (
-    <div>
+      <>
       <form onSubmit={handleSearch}>
         <input type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
         <button type="submit">Search</button>
@@ -81,21 +90,22 @@ const Search = () => {
       <button onClick={() => handleFilter("house/ravenclaw")}>Ravenclaw</button>
       <button onClick={() => handleFilter("house/hufflepuff")}>Hufflepuff</button>
       
-      <div>
-        {currentResults.map(favorite => (
-          <Card key={favorite.id} character={favorite} />
+      <section className="card-section">
+        {currentResults.map(characters => (
+          <Card key={characters.id} character={characters} />
         ))}
-      </div>
+    </section>
 
-      {/* Paginación */}
-      <div>
+
+      {/* Mostrar la paginacion */}
+      <article>
         {Array.from({ length: totalPages }, (_, index) => (
           <button key={index} onClick={() => paginate(index + 1)}>
             {index + 1}
           </button>
         ))}
-      </div>
-    </div>
+      </article>
+      </>
   )
 };
 

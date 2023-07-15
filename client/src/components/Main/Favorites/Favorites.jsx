@@ -8,7 +8,7 @@ const Favorites = () => {
   useEffect(() => {
     const fetchDDBB = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/favorites');
+        const response = await axios.get('/api/favorites');
         const data = response.data;
         setFavorites(data);
       } catch (error) {

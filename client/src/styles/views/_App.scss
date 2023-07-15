@@ -1,5 +1,17 @@
+@import '../utils/variables.scss';
+@import '../utils/mixins.scss';
+
 #root {
     text-align: center;
     margin:0px;
     min-height: 100vh;
+}
+
+* {
+    font-size: 24px;
+    margin-bottom: 8px;
+    color: #1e3b66;
+    font-family: $harry-potter-font;
+    font-weight: bolder;
+    text-shadow: -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff, 1px 1px 0 #ffffff;
 }

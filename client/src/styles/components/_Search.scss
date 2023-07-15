@@ -1,3 +1,16 @@
-img {
-    width: 300px;
-}
+@import '../utils/variables.scss';
+@import '../utils/mixins.scss';
+
+.card-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; // Cambia a "space-around" en lugar de "space-between"
+    padding: 16px;
+    margin: 0 auto;
+    max-width: 1200px;
+  
+    // Añade margen inferior para reducir la separación entre las tarjetas
+    > .card {
+      margin-bottom: 16px;
+    }
+  }  
