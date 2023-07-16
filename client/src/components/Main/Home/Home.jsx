@@ -1,37 +1,42 @@
-import React from "react";
-import Signup from "./Signup/Signup";
-import Login from "./Login/Login";
-import Logout from "./Logout/Logout";
+import React, { useContext } from 'react';
+import { AuthContext } from '../../../context/authContext';
+import Signup from './Signup/Signup';
+import Login from './Login/Login';
 
-const Home = ({ isRegistered, isLoggedIn, onSignUpExitoso, onLoginExitoso }) => {
+const Home = ({ isRegistered, onSignUpExitoso }) => {
+
+  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+
+  const handleLoginExitoso = () => {
+    setIsLoggedIn(true);
+  };
+
   return (
-    <div className="home-container">
+    <section className="home-container">
       <div className="form-container">
-        <div className="form-box">
+        <article className="form-box">
           {isRegistered ? (
             <div>
               <h2 className="title">Login</h2>
-              <Login onLogin={onLoginExitoso} />
+              <Login onLogin={handleLoginExitoso} />
             </div>
           ) : (
             <div>
               <h2 className="title">Sign up</h2>
               <Signup onSignUp={onSignUpExitoso} />
               <div className="button-container">
-                <button className="button" onClick={() => setIsLoggedIn(true)}>
+                <button
+                  className="button"
+                  onClick={() => setIsLoggedIn(true)} >
                   Continue without register
                 </button>
               </div>
             </div>
           )}
-          {isLoggedIn && <Logout />}
-        </div>
-        </div>
+        </article>
       </div>
+    </section>
   );
 };
-
-
-
 
 export default Home;

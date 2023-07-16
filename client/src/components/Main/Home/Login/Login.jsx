@@ -2,11 +2,12 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 
-const Login = () => {
+const Login = ( {onLogin} ) => {
 
   const { register, handleSubmit } = useForm();
 
   const handleLogin = async (data) => {
+    onLogin();
     try {
       await axios.post("/login", data);
       

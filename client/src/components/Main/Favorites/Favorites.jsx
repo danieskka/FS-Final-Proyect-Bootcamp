@@ -31,14 +31,14 @@ const Favorites = () => {
   }, []);
 
   return (
-    <div>
+    <section className="card-section">
       {favorites.map((favorite, index) => (
-        <div key={index}>
+        <article key={index} className="favorite-card">
           <h1>{favorite[0].name}</h1>
           <img src={favorite[0].image} alt={favorite[0].name} />
-        </div>
+        </article>
       ))}
-    </div>
+    </section>
   )
 };
 
