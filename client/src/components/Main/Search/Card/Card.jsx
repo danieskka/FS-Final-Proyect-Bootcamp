@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from 'axios';
+import { AuthContext } from '../../../../context/authContext';
 
 const Card = ({ character }) => {
+  
+  const { isLoggedIn } = useContext(AuthContext);
+
   const [showMore, setShowMore] = useState(false);
 
   const handleShowMore = () => {
@@ -27,10 +31,13 @@ const Card = ({ character }) => {
       {character.image && <img src={character.image} alt={character.name} />}
       <p>{character.description}</p>
       <button onClick={handleShowMore}>{showMore ? "Hide" : "Show"} More</button>
-      
-      <button onClick={handleAddToFavorites}>
-        Add to Favorites
-      </button>
+
+      {isLoggedIn && (
+        <button onClick={handleAddToFavorites}>
+          Add to Favorites
+        </button>
+      )}
+
       {showMore && (
         <div className="additional-info">
           <h2>Additional Information:</h2>
@@ -53,5 +60,3 @@ const Card = ({ character }) => {
 };
 
 export default Card;
-
-
