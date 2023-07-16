@@ -6,24 +6,36 @@ const Favorites = () => {
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-    const fetchDDBB = async () => {
+    const fetchFavorites = async () => {
       try {
         const response = await axios.get('/api/favorites');
         const data = response.data;
-        setFavorites(data);
+        console.log(data);
+
+        // Obtener los character_ids del objeto data
+        const characterIds = data.character_ids;
+
+        // Consultar la API para obtener la información de los personajes
+        const charactersData = await Promise.all(characterIds.map(async (characterId) => {
+          const characterResponse = await axios.get(`https://hp-api.onrender.com/api/character/${characterId}`);
+          return characterResponse.data;
+        }));
+
+        setFavorites(charactersData);
+        console.log(charactersData);
       } catch (error) {
         console.log("Error:", error);
       }
     }
-    fetchDDBB();
+    fetchFavorites();
   }, []);
 
   return (
     <div>
       {favorites.map((favorite, index) => (
         <div key={index}>
-          <h1>{favorite.name}</h1>
-          <img src={favorite.image} alt={favorite.name} />
+          <h1>{favorite[0].name}</h1>
+          <img src={favorite[0].image} alt={favorite[0].name} />
         </div>
       ))}
     </div>
