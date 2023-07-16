@@ -1,0 +1,54 @@
+// _NavBar.scss
+
+nav {
+    background-color: #333;
+    padding: 20px;
+  
+    ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+  
+      li {
+        margin: 0 30px;
+  
+        &:first-child {
+          margin-left: 0;
+        }
+  
+        &:last-child {
+          margin-right: 0;
+        }
+  
+        a {
+          text-decoration: none;
+          font-size: 30px;
+          transition: color 0.3s ease;
+  
+          &:hover {
+            color: #c62828;
+          }
+        }
+      }
+    }
+  
+    @media (max-width: 768px) {
+      ul {
+        flex-direction: column;
+        align-items: center;
+  
+        li {
+          margin: 10px 0;
+  
+          &:first-child {
+            margin-top: 0;
+          }
+  
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+  

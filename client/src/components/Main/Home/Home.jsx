@@ -4,8 +4,8 @@ import Signup from './Signup/Signup';
 import Login from './Login/Login';
 
 const Home = ({ isRegistered, onSignUpExitoso }) => {
-
-  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+  
+  const { setIsLoggedIn } = useContext(AuthContext);
 
   const handleLoginExitoso = () => {
     setIsLoggedIn(true);
@@ -23,11 +23,12 @@ const Home = ({ isRegistered, onSignUpExitoso }) => {
           ) : (
             <div>
               <h2 className="title">Sign up</h2>
-              <Signup onSignUp={onSignUpExitoso} />
+              <Signup onSignUp={onSignUpExitoso} /> {/* Cambio aquí */}
               <div className="button-container">
                 <button
                   className="button"
-                  onClick={() => setIsLoggedIn(true)} >
+                  onClick={() => setIsLoggedIn(true)}
+                >
                   Continue without register
                 </button>
               </div>

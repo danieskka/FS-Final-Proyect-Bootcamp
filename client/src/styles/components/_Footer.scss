@@ -1,0 +1,20 @@
+footer {
+    background-color: #333;
+    padding: 20px;
+    text-align: center;
+    margin-top: auto;
+  
+    button {
+      background-color: #c62828;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+  
+      &:hover {
+        background-color: #9c1c1c;
+      }
+    }
+  }
+  
