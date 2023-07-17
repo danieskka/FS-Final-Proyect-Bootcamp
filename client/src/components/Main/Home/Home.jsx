@@ -23,7 +23,7 @@ const Home = ({ isRegistered, onSignUpExitoso }) => {
           ) : (
             <div>
               <h2 className="title">Sign up</h2>
-              <Signup onSignUp={onSignUpExitoso} /> {/* Cambio aquí */}
+              <Signup onSignUp={onSignUpExitoso} />
               <div className="button-container">
                 <button
                   className="button"

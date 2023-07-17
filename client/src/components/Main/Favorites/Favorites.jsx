@@ -5,6 +5,20 @@ const Favorites = () => {
   
   const [favorites, setFavorites] = useState([]);
 
+  
+  const handleRemoveFav = async (id) => {
+    console.log(id);
+    try {
+      const response = await axios.delete(`api/favorites/${id}`, {
+        withCredentials: true
+      });
+      console.log("Character removed succesfully:", 
+      response.data);
+    } catch (error) {
+      console.log("Error removing character from favorites;", error);
+    }
+  };
+
   useEffect(() => {
     const fetchFavorites = async () => {
       try {
@@ -36,6 +50,7 @@ const Favorites = () => {
         <article key={index} className="favorite-card">
           <h1>{favorite[0].name}</h1>
           <img src={favorite[0].image} alt={favorite[0].name} />
+          <button onClick={() => handleRemoveFav(favorite[0].id)}> Remove Favorite</button>
         </article>
       ))}
     </section>
