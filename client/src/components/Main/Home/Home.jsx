@@ -15,7 +15,7 @@ const Home = ({ isRegistered, onSignUpExitoso }) => {
     <section className="home-container">
       <div className="form-container">
         <article className="form-box">
-          {isRegistered ? (
+          { 1==1 ? (
             <div>
               <h2 className="title">Login</h2>
               <Login onLogin={handleLoginExitoso} />

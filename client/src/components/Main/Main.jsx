@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./Home";
 import Search from "./Search";
 import Favorites from "./Favorites";
+import { AuthContext } from "../../context/authContext";
 
 const Main = () => {
   
+  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
   const [isRegistered, setIsRegistered] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleSignUpExitoso = () => {
     setIsRegistered(true);

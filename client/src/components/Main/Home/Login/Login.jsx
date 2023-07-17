@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { AuthContext } from "../../../../context/authContext";
 
 const Login = ( {onLogin} ) => {
-
+  
+  const {setId} = useContext(AuthContext)
   const { register, handleSubmit } = useForm();
 
   const handleLogin = async (data) => {
     onLogin();
     try {
       await axios.post("/login", data);
-      
+      setId(true);
     } catch (error) {
       console.log("Error:", error);
     }
