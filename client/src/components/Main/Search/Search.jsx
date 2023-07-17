@@ -102,7 +102,7 @@ const Search = () => {
       </section>
 
       {/* Mostrar la paginación */}
-      <article>
+      <article className="pagination-article">
         {startPage > 1 && ( // Comprobacion -> de la pagina de inicio es > 1, si lo es, muestra la paginacion
           <>
             <button onClick={() => paginate(1)}>1</button> {/* Mostrar boton para la pag 1 que esta fijo */}

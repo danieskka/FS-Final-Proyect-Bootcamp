@@ -2,7 +2,7 @@
 @import '../utils/mixins.scss';
 
 .card-section {
-    background-color: bisque;
+    background-color: beige;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -13,8 +13,18 @@
     > .card {
       margin-bottom: 16px;
     }
+}
+
+.pagination-article {
+  background-color: #740001;
+  margin-bottom: 10px;
+
+  button:hover {
+    color: #c62828;
   }
-  .article-buttons {
+}
+
+.article-buttons {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -58,5 +68,5 @@
         opacity: 0.8;
       }
     }
-  }
+}
   

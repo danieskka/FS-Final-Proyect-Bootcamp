@@ -14,6 +14,11 @@ const Home = ({ isRegistered, onSignUpExitoso }) => {
   return (
     <section className="home-container">
       <div className="form-container">
+          <h1>Welcome to the Wizarding World of Harry Potter</h1>
+          <article>
+          <p>As the tale usually says... You will be able only to go through this website if you are not a muggle, otherwise you may not even know what is this term used for i am afraid</p>
+          <p>Else you are a Wizard or an apprentice please follow me and sign up bellow in order to navigate through the magic that awaits underneath...</p>
+        </article>
         <article className="form-box">
           { 1==1 ? (
             <div>

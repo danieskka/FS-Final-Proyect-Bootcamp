@@ -7,8 +7,16 @@
     min-height: 100vh;
 }
 
+body {
+    text-align: center;
+    margin: 0;
+    padding-bottom: 60px;
+    min-height: 100vh;
+    background-color: beige;
+  }
+
 * {
-    font-size: 24px;
+    font-size: 30px;
     margin-bottom: 8px;
     color: #1e3b66;
     font-family: $harry-potter-font;

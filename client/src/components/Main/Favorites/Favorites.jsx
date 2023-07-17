@@ -5,15 +5,17 @@ const Favorites = () => {
   
   const [favorites, setFavorites] = useState([]);
 
-  
   const handleRemoveFav = async (id) => {
     console.log(id);
     try {
       const response = await axios.delete(`api/favorites/${id}`, {
         withCredentials: true
       });
-      console.log("Character removed succesfully:", 
-      response.data);
+      console.log("Character removed succesfully:", response);
+
+      // Para filtrar los favoritos cuando se borran y no tener que actualizar la pag
+      setFavorites((updateFav) => updateFav.filter((favorites) => favorites[0].id !== id));
+
     } catch (error) {
       console.log("Error removing character from favorites;", error);
     }
