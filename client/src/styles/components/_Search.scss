@@ -1,0 +1,72 @@
+@import '../utils/variables.scss';
+@import '../utils/mixins.scss';
+
+.card-section {
+    background-color: beige;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 16px;
+    margin: 0 auto;
+    max-width: 1200px;
+  
+    > .card {
+      margin-bottom: 16px;
+    }
+}
+
+.pagination-article {
+  background-color: #740001;
+  margin-bottom: 10px;
+
+  button:hover {
+    color: #c62828;
+  }
+}
+
+.article-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 16px;
+    background-color: #2d004d;
+  
+    button {
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: $harry-potter-font, sans-serif;
+      transition: background-color 0.3s;
+      margin: 8px;
+  
+      &.students {
+        background-color: $color-students;
+      }
+  
+      &.staff {
+        background-color: $color-staff;
+      }
+  
+      &.gryffindor {
+        background-color: $color-gryffindor;
+      }
+  
+      &.slytherin {
+        background-color: $color-slytherin;
+      }
+  
+      &.ravenclaw {
+        background-color: $color-ravenclaw;
+      }
+  
+      &.hufflepuff {
+        background-color: $color-hufflepuff;
+      }
+  
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+}
+  
