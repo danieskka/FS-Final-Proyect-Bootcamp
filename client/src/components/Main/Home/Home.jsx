@@ -20,7 +20,7 @@ const Home = ({ isRegistered, onSignUpExitoso }) => {
           <p>Else you are a Wizard or an apprentice please follow me and sign up bellow in order to navigate through the magic that awaits underneath...</p>
         </article>
         <article className="form-box">
-          { 1==1 ? (
+          { isRegistered ? (
             <div>
               <h2 className="title">Login</h2>
               <Login onLogin={handleLoginExitoso} />
