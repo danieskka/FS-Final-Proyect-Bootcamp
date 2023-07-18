@@ -12,7 +12,7 @@ Home:
 
     However feel free to navigate without registration process if you don't feel to:
 
-![SignUp](image.png)
+![SignUp](./client/src/assets/image.png)
 
 Header:
 
